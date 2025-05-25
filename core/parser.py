@@ -13,8 +13,12 @@ def parse_json(response: Dict[Any, Any]) -> Dict[Any, Any]:
     -----------
         Dict[Any, Any]: A dictionary containing the JSON data extracted from the response. 
     """
-
-    return
+    try:
+        response = response.json()
+        return response
+    except Exception as e:
+        print(f"Exception occurred when parsing response to json. Error: {e}")
+        return None
 
 def flatten_json(nested_dict: Dict[Any, Any], parent_key="", sep=".") -> Dict[Any, Any]:
     """
